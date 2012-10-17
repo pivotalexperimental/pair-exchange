@@ -21,9 +21,12 @@ group :assets do
 end
 
 gem 'jquery-rails'
+gem 'haml-rails'
 
-group :test do
+group :test, :development do
   gem 'rspec-rails'
+  gem 'smooth-jazz-nyan-cat-formatter'
+  gem 'capybara'
 end
 
 # To use ActiveModel has_secure_password
