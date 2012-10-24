@@ -28,6 +28,7 @@ group :test, :development do
   gem 'smooth-jazz-nyan-cat-formatter'
   gem 'capybara'
   gem 'sqlite3'
+  gem 'factory_girl'
 end
 
 # To use ActiveModel has_secure_password

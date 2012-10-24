@@ -13,6 +13,14 @@ describe ProjectsController do
     specify do
       {post: '/projects'}.should route_to(controller: 'projects', action: 'create')
     end
+
+    specify do
+      {get: '/projects/1/edit'}.should route_to(controller: 'projects', action: 'edit', id: '1')
+    end
+
+    specify do
+      {put: '/projects/1'}.should route_to(controller: 'projects', action: 'update', id: '1')
+    end
   end
 
   describe '#index' do
@@ -38,6 +46,17 @@ describe ProjectsController do
     end
   end
 
+  describe 'edit' do
+    let(:project) { create(:project) }
+
+    it 'assigns the Project' do
+      get :edit, id: project.to_param
+      project = assigns(:project)
+      project.should be_persisted
+      project.should be_a(Project)
+    end
+  end
+
   describe 'create' do
     it 'creates a new project with the given params' do
       expect do
@@ -49,6 +68,23 @@ describe ProjectsController do
 
     it 'redirects to /' do
       post :create, project: {name: 'asdf', owner: 'zxcv'}
+      response.should redirect_to('/projects')
+    end
+  end
+
+  describe 'update' do
+    let(:project) { create(:project) }
+    it 'updates a project with the given params' do
+      expect do
+        put :update, id: project.to_param, project: {name: 'asdf', owner: 'zxcv'}
+      end.to change(Project, :count).by(1)
+      project.reload
+      project.name.should == 'asdf'
+      project.owner.should == 'zxcv'
+    end
+
+    it 'redirects to /' do
+      put :update, id: project.to_param, project: {name: 'asdf', owner: 'zxcv'}
       response.should redirect_to('/projects')
     end
   end
