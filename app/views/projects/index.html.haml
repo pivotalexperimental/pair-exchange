@@ -2,4 +2,6 @@
   = project.name
   = link_to("Edit #{project.name}", edit_project_path(project))
 
-%a{href: 'projects/new'} Add project
+%a{href: 'projects/new', class: 'btn'}
+  %i{class: 'icon-plus'}
+  = " Add project"
