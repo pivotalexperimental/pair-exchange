@@ -49,7 +49,7 @@ describe ProjectsController do
 
     it 'redirects to /' do
       post :create, project: {name: 'asdf', owner: 'zxcv'}
-      response.should redirect_to('/')
+      response.should redirect_to('/projects')
     end
   end
 end

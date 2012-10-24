@@ -9,6 +9,6 @@ class ProjectsController < ApplicationController
 
   def create
     Project.create(params[:project])
-    redirect_to('/')
+    redirect_to(projects_path)
   end
 end
