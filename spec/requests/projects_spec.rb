@@ -15,6 +15,8 @@ describe 'Listing projects' do
     click_link('Add project')
     fill_in('Project Name', with: 'My 8th Grade Science Diorama')
     fill_in('Owner', with: 'rob.mee@pivotallabs.com')
+    select('SF', from: 'Office')
+    fill_in('Technology', with: 'Cardboard')
     click_button('Create Project')
     page.should have_content('My 8th Grade Science Diorama')
     current_path.should == '/projects'

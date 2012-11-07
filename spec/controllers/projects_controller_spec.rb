@@ -60,10 +60,17 @@ describe ProjectsController do
   describe 'create' do
     it 'creates a new project with the given params' do
       expect do
-        post :create, project: {name: 'asdf', owner: 'zxcv'}
+        post :create, project:
+          { name: 'asdf',
+            owner: 'zxcv',
+            office: 'SF',
+            technology: 'Cardboard'
+          }
       end.to change(Project, :count).by(1)
       Project.last.name.should == 'asdf'
       Project.last.owner.should == 'zxcv'
+      Project.last.office.should == 'SF'
+      Project.last.technology.should == 'Cardboard'
     end
 
     it 'redirects to /' do
