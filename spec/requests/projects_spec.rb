@@ -2,12 +2,14 @@ require 'spec_helper'
 
 describe 'Listing projects' do
   before do
-    Project.create(name: 'My Lovely Project')
+    Project.create!(name: 'My Lovely Project')
+    Project.create!(name: 'My Done Project', finished: true)
   end
 
   it 'shows a list of added projects on the home page' do
     visit('/')
     page.should have_content('My Lovely Project')
+    page.should_not have_content('My Done Project')
   end
 
   it 'allows you to create a new project' do

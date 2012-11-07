@@ -29,11 +29,12 @@ describe ProjectsController do
       Project.create(name: 'Projecting Fear')
       Project.create(name: 'Astral Projection')
       Project.create(name: 'A project')
+      Project.create(name: 'A finished project', finished: true)
     end
 
-    it 'assigns all the Projects' do
+    it 'assigns all the unfinished Projects' do
       get :index
-      assigns(:projects).should == Project.all
+      assigns(:projects).should == Project.where(:finished => false)
     end
   end
 
