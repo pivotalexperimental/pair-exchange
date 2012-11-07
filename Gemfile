@@ -2,10 +2,11 @@ source 'https://rubygems.org'
 
 gem 'rails', '3.2.6'
 
-gem 'pg'
-gem 'jquery-rails'
 gem 'heroku'
 gem 'haml-rails'
+gem 'jquery-rails'
+gem "less-rails"
+gem 'pg'
 gem 'twitter-bootstrap-rails'
 
 group :assets do

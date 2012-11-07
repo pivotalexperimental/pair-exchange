@@ -1,6 +1,12 @@
-- @projects.each do |project|
-  = project.name
-  = link_to("Edit #{project.name}", edit_project_path(project))
+%table
+  %thead
+    %tr
+      %th Project Name
+      %th Edit
+    - @projects.each do |project|
+      %tr
+        %td= project.name
+        %td= link_to("Edit #{project.name}", edit_project_path(project))
 
 %a{href: 'projects/new', class: 'btn'}
   %i{class: 'icon-plus'}
