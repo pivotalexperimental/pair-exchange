@@ -1,9 +1,13 @@
 require 'spec_helper'
 
 describe 'Listing projects' do
+  let(:owner) { 'owner@pivotallabs.com' }
+
   before do
     Project.create!(name: 'My Lovely Project')
     Project.create!(name: 'My Done Project', finished: true)
+    ApplicationController.any_instance.stub(:current_user).
+      and_return(owner)
   end
 
   it 'shows a list of added projects on the home page' do
@@ -15,11 +19,13 @@ describe 'Listing projects' do
   it 'allows you to create a new project' do
     visit('/')
     click_link('Add project')
-    fill_in('Project Name', with: 'My 8th Grade Science Diorama')
-    fill_in('Owner', with: 'rob.mee@pivotallabs.com')
-    select('SF', from: 'Office')
-    fill_in('Technology', with: 'Cardboard')
-    click_button('Create Project')
+    within('#new_project') do
+      fill_in('Project Name', with: 'My 8th Grade Science Diorama')
+      page.should have_content(owner)
+      select('SF', from: 'Office')
+      fill_in('Technology', with: 'Cardboard')
+      click_button('Create Project')
+    end
     page.should have_content('My 8th Grade Science Diorama')
     current_path.should == '/projects'
   end
