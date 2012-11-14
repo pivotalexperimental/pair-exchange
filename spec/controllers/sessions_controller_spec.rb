@@ -2,12 +2,6 @@ require 'spec_helper'
 
 describe SessionsController do
   describe "create" do
-    it "sets the session[logged_in] to true" do
-      request.env['omniauth.auth'] = {'info' => {'email' => 'anything@pivotallabs.com'}}
-      post :create, :provider => 'google_apps'
-      session[:logged_in].should be_true
-    end
-
     it "doesn't log in a non-pivotal user" do
       request.env['omniauth.auth'] = { 'info' => { 'email' => 'anything@square.com' } }
       post :create, :provider => 'google_apps'
