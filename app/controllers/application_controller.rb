@@ -4,7 +4,7 @@ class ApplicationController < ActionController::Base
 
   def current_user
     unless @current_user
-      @current_user = session[:name]
+      @current_user = session[:email]
     end
 
     @current_user
@@ -12,6 +12,8 @@ class ApplicationController < ActionController::Base
   helper_method :current_user
 
   def require_login
-    redirect_to("/auth/google_apps")
+    unless session[:logged_in]
+      redirect_to("/auth/google_apps")
+    end
   end
 end

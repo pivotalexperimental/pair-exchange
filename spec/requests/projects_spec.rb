@@ -4,6 +4,7 @@ describe 'Listing projects' do
   let(:owner) { 'owner@pivotallabs.com' }
 
   before do
+    visit('/test_login?email=jpivot@pivotallabs.com')
     Project.create!(name: 'My Lovely Project')
     Project.create!(name: 'My Done Project', finished: true)
     ApplicationController.any_instance.stub(:current_user).

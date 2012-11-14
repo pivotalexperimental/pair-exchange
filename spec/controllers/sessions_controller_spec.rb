@@ -14,7 +14,7 @@ describe SessionsController do
       session[:logged_in].should be_nil
     end
 
-    it "sets the session username" do
+    it "sets the session email" do
       request.env['omniauth.auth'] = {
         'info' => {
           'email' => 'anything@pivotallabs.com',
@@ -23,7 +23,7 @@ describe SessionsController do
       }
 
       post :create, :provider => 'google_apps'
-      session[:name].should == 'jpivot'
+      session[:email].should == 'anything@pivotallabs.com'
     end
 
     it "redirects to the homepage" do

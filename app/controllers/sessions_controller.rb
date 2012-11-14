@@ -1,8 +1,8 @@
-class SessionsController < ApplicationController
+class SessionsController < ActionController::Base
   def create
     if request.env['omniauth.auth']['info']['email'] =~ /.*@pivotallabs\.com/
       session[:logged_in] = true
-      session[:name] = request.env['omniauth.auth']['info']['name']
+      session[:email] = request.env['omniauth.auth']['info']['email']
     end
 
     redirect_to root_path
