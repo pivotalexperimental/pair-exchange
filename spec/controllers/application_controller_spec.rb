@@ -19,4 +19,12 @@ describe ApplicationController do
       assigns(:current_user).should ==(@user)
     end
   end
+
+  describe "#require_login" do
+    it "should redirect to auth page if no user logged in" do
+      get :index
+      response.should be_redirect
+      response.should redirect_to("/auth/google_apps")
+    end
+  end
 end
