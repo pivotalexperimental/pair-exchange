@@ -38,4 +38,10 @@ describe 'Listing projects' do
     click_button('Update Project')
     current_path.should == '/projects'
   end
+
+  it 'allows you to express interest in a project' do
+    visit('/')
+    click_link("I'm interested in My Lovely Project")
+    page.should have_content('You are interested in My Lovely Project')
+  end
 end
