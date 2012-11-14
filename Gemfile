@@ -21,6 +21,10 @@ group :development do
   gem 'heroku_san'
 end
 
+group :test do
+  gem 'rake'
+end
+
 group :test, :development do
   gem 'rspec-rails'
   gem 'smooth-jazz-nyan-cat-formatter'
