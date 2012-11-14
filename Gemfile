@@ -10,6 +10,7 @@ gem 'pg'
 gem 'twitter-bootstrap-rails'
 gem 'omniauth-google-apps'
 gem 'thin'
+gem 'google-api-client'
 
 group :assets do
   gem 'sass-rails',   '~> 3.2.3'
