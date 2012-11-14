@@ -1,6 +1,6 @@
 class ProjectsController < ApplicationController
   def index
-    @projects = Project.where(:finished => false)
+    @projects = Project.active
   end
 
   def new
