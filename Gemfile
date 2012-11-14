@@ -9,6 +9,7 @@ gem "less-rails"
 gem 'pg'
 gem 'twitter-bootstrap-rails'
 gem 'omniauth-google-apps'
+gem 'thin'
 
 group :assets do
   gem 'sass-rails',   '~> 3.2.3'
