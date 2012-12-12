@@ -14,11 +14,7 @@ describe InterestsController do
 
   describe 'create' do
     let(:project) { FactoryGirl.create :project }
-    let(:params) do
-      {
-        project_id: project.id,
-      }
-    end
+    let(:params) { {project_id: project.id } }
 
     it 'creates a new interest with the given params' do
       expect do
