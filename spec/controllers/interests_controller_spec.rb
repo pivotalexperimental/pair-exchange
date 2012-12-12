@@ -1,6 +1,11 @@
 require 'spec_helper'
 
 describe InterestsController do
+  let(:current_user_email) { "jpivot@pivotallabs.com" }
+  before do
+    login("jpivot@pivotallabs.com")
+  end
+
   describe 'routing' do
     specify do
       {post: '/projects/1/interests'}.should route_to(controller: 'interests', action: 'create', project_id: '1')
@@ -12,9 +17,6 @@ describe InterestsController do
     let(:params) do
       {
         project_id: project.id,
-        interest: {
-          user: 'testUser@example.com',
-        }
       }
     end
 
@@ -22,8 +24,10 @@ describe InterestsController do
       expect do
         post :create, params
       end.to change(Interest, :count).by(1)
-      Interest.last.user.should == 'testUser@example.com'
-      Interest.last.project.should == project
+
+      new_interest = Interest.last
+      new_interest.user.should == current_user_email
+      new_interest.project.should == project
     end
 
     it 'redirects to /' do
