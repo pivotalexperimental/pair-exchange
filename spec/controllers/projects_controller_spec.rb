@@ -1,6 +1,10 @@
 require 'spec_helper'
 
 describe ProjectsController do
+  before do
+    login("jpivot@pivotallabs.com")
+  end
+
   describe 'routing' do
     specify do
       {get: '/projects'}.should route_to(controller: 'projects', action: 'index')

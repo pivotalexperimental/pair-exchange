@@ -10,8 +10,8 @@ describe ApplicationController do
 
   describe "#current_user" do
     before :each do
-      @user = 'Callum'
-      session[:name] = @user
+      @user = 'jpivot@pivotallabs.com'
+      login(@user)
     end
 
     it "should return the current_user" do

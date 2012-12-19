@@ -2,16 +2,19 @@ class ApplicationController < ActionController::Base
   protect_from_forgery
   before_filter :require_login
 
-  def current_user
-    unless @current_user
-      @current_user = session[:name]
-    end
+  helper_method :current_user
 
-    @current_user
+  helper_method :current_user
+
+  def current_user
+    @current_user ||= session[:email]
   end
+
   helper_method :current_user
 
   def require_login
-    redirect_to("/auth/google_apps")
+    unless session[:email]
+      redirect_to("/auth/google_apps")
+    end
   end
 end

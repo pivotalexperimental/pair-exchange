@@ -7,7 +7,21 @@ describe Project do
 
     it 'contains only active projects' do
       Project.active.should include(active_project)
-      Project.active.should_not include(finished_project)
+      Project.active.should_not include(finished_project) 
+    end
+  end
+  
+  describe '#interest_from?' do
+    it 'should return true for interested users' do
+      project = FactoryGirl.create :project
+      interest = project.interests.create :user => "testUser@example.com"
+      project.interest_from?("testUser@example.com").should be_true
+    end
+
+    it 'should return false for not interested users' do
+      project = FactoryGirl.create :project
+      interest = project.interests.create :user => "testUser@example.com"
+      project.interest_from?("notInterested@example.com").should be_false
     end
   end
 

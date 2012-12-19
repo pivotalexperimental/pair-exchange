@@ -5,6 +5,7 @@ describe 'Listing projects' do
   let(:owner_image_url) { 'http://example.com/owner.jpg' }
 
   before do
+    visit('/test_login?email=jpivot@pivotallabs.com')
     Project.create!(name: 'My Lovely Project')
     Project.create!(name: 'My Done Project', finished: true)
     ApplicationController.any_instance.stub(:current_user).
@@ -39,5 +40,11 @@ describe 'Listing projects' do
     fill_in('Description', with: 'Pairing on Starcraft with Dan Hansen')
     click_button('Update Project')
     current_path.should == '/projects'
+  end
+
+  it 'allows you to express interest in a project' do
+    visit('/')
+    click_link("I'm interested in My Lovely Project")
+    page.should have_content('You are interested in My Lovely Project')
   end
 end
