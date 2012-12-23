@@ -20,7 +20,7 @@ describe SessionsController do
       session[:email].should == 'anything@pivotallabs.com'
     end
 
-    it "redirects to the homepage" do
+    xit "redirects to the homepage" do
       request.env['omniauth.auth'] = {
         'info' => {
           'email' => 'anything@pivotallabs.com',
@@ -30,6 +30,17 @@ describe SessionsController do
 
       post :create, :provider => 'google_apps'
       response.should redirect_to(root_path)
+    end
+    
+    it 'redirects to the google plus authorization page' do
+      request.env['omniauth.auth'] = {
+        'info' => {
+          'email' => 'anything@pivotallabs.com',
+          'name' => 'jpivot'
+        }
+      }
+      post :create, :provider => 'google_apps'
+      response.should redirect_to("https://accounts.google.com/o/oauth2/auth?access_type=offline&approval_prompt=force&client_id=962111677531.apps.googleusercontent.com&redirect_uri=http://pair-exchange.herokuapp.com/oauth2callback&response_type=code&scope=https://www.googleapis.com/auth/plus.me")
     end
   end
 end

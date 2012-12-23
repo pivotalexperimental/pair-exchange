@@ -27,7 +27,7 @@ describe Project do
 
   describe '#owner_image_url' do
     it 'gets the image url from the google api' do
-
+      
     end
   end
 end

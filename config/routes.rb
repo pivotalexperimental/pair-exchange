@@ -7,5 +7,7 @@ PairExchange::Application.routes.draw do
 
   get 'test_login', :to => 'testing_login#login', :as => :test_login if Rails.env.test?
 
+  match '/oauth2callback', :to => 'sessions#update'
+
   root to: 'projects#index'
 end
